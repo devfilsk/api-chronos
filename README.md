@@ -26,5 +26,8 @@
 
 #### Execute the command "php artisan migrate --seed"
 
+### Execute the follow command to initialize the server:
+#### php artisan serve
+
 
 ## finish.
