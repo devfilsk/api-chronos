@@ -23,7 +23,9 @@ Route::group(['middleware' => 'auth:api'], function (){
     });
 
 //    Route::resource('cliente', 'ClienteController', ['except' => ['create', 'edit']]);
+    Route::post('logout', 'Api\AuthController@logout');
 
 });
+
 
 Route::name('api.login')->post('login', 'Api\AuthController@login');

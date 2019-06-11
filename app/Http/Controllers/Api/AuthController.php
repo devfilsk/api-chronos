@@ -26,4 +26,10 @@ class AuthController extends Controller
                 'error' => \Lang::get('auth.failed')
             ], 400);
     }
+
+    public function logout(){
+        \Auth::logout();
+        // 204 significa "sem conteúdo | No-content"
+        return response()->json([], 204);
+    }
 }
