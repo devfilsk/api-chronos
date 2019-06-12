@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:api'], function (){
+Route::post('refresh', 'Api\AuthController@refresh');
+Route::name('api.login')->post('login', 'Api\AuthController@login');
+
+Route::group(['middleware' => ['auth:api', 'jwt.refresh']], function (){
     Route::get('users', function (){
         return \App\User::all();
     });
@@ -28,4 +31,3 @@ Route::group(['middleware' => 'auth:api'], function (){
 });
 
 
-Route::name('api.login')->post('login', 'Api\AuthController@login');

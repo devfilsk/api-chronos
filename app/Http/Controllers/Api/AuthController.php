@@ -32,4 +32,10 @@ class AuthController extends Controller
         // 204 significa "sem conteúdo | No-content"
         return response()->json([], 204);
     }
+
+    public function refresh(){
+        $token = \Auth::refresh();
+        // 204 significa "sem conteúdo | No-content"
+        return ['token' => $token];
+    }
 }
