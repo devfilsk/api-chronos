@@ -14,10 +14,15 @@ class CreateTableAssuntos extends Migration
     public function up()
     {
         Schema::create('assuntos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->engine = 'InnoDB';
+            $table->uuid('uuid')->primary();
             $table->string('descricao');
             $table->string('anotacao');
             $table->timestamps();
+
+            // foreing key to disciplina
+            $table->uuid('disciplina_uuid');
+            $table->foreign('disciplina_uuid')->references('uuid')->on('disciplinas');
         });
     }
 

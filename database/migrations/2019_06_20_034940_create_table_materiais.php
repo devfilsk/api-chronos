@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableCronograma extends Migration
+class CreateTableMateriais extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateTableCronograma extends Migration
      */
     public function up()
     {
-        Schema::create('cronogramas', function (Blueprint $table) {
+        Schema::create('materiais', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('uuid')->primary();
-            $table->string('titulo');
             $table->string('descricao');
-            $table->dateTime('inicio');
-            $table->dateTime('fim');
-            $table->boolean('synced')->default(false);
+            $table->integer('time');
+            $table->dateTime('data');
+            $table->integer('escopo');
             $table->timestamps();
 
-            $table->uuid('user_uuid');
-            $table->foreign('user_uuid')->references('uuid')->on('users');
+            $table->uuid('assunto_uuid');
+            $table->foreign('assunto_uuid')->references('uuid')->on('assuntos');
         });
     }
 
@@ -35,6 +34,6 @@ class CreateTableCronograma extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cronogramas');
+        Schema::dropIfExists('materiais');
     }
 }
