@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Model\Api\Cronograma;
+use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,7 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, UuidModels;
+    use Notifiable, UuidModels, TenantUsers;
 
     //    protected $primaryKey = 'uuid';
 
@@ -63,6 +65,10 @@ class User extends Authenticatable implements JWTSubject
             'name' => $this->name,
             'email' => $this->email
         ];
+    }
+
+    public function cronogramas(){
+        return $this->hasMany(Cronograma::class, 'user_uuid', 'uuid');
     }
 
 }

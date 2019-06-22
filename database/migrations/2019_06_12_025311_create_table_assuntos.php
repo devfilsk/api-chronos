@@ -21,7 +21,9 @@ class CreateTableAssuntos extends Migration
             $table->timestamps();
 
             // foreing key to disciplina
+            $table->uuid('user_uuid');
             $table->uuid('disciplina_uuid');
+            $table->foreign('user_uuid')->references('uuid')->on('users');
             $table->foreign('disciplina_uuid')->references('uuid')->on('disciplinas');
         });
     }

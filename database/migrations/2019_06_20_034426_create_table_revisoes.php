@@ -20,7 +20,9 @@ class CreateTableRevisoes extends Migration
             $table->integer('escopo');
             $table->timestamps();
 
+            $table->uuid('user_uuid');
             $table->uuid('assunto_uuid');
+            $table->foreign('user_uuid')->references('uuid')->on('users');
             $table->foreign('assunto_uuid')->references('uuid')->on('assuntos');
         });
     }

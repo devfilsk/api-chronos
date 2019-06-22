@@ -21,7 +21,9 @@ class CreateTableDisciplinas extends Migration
             $table->timestamps();
 
             //Foreing key
+            $table->uuid('user_uuid');
             $table->uuid('cronograma_uuid');
+            $table->foreign('user_uuid')->references('uuid')->on('users');
             $table->foreign('cronograma_uuid')->references('uuid')->on('cronogramas');
         });
     }

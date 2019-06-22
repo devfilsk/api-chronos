@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth:api', 'jwt.refresh']], function (){
         return \App\User::all();
     });
 
+    Route::resource('cronogramas', 'Api\CronogramaController', ['except' => ['create', 'edit']]);
+
 //    Route::resource('cliente', 'ClienteController', ['except' => ['create', 'edit']]);
     Route::post('logout', 'Api\AuthController@logout');
 
