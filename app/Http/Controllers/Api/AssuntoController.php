@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Model\Api\Assunto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class AssuntoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Assunto::all());
     }
 
     /**
@@ -35,7 +36,8 @@ class AssuntoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $assunto = new Assunto();
+        return response()->json($assunto->createAssunto($request));
     }
 
     /**
@@ -46,7 +48,7 @@ class AssuntoController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Assunto::findOrFail($id));
     }
 
     /**
@@ -57,7 +59,7 @@ class AssuntoController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -69,7 +71,8 @@ class AssuntoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $assunto =  Assunto::findOrFail($id);
+        return response()->json($assunto->updateAssunto($request));
     }
 
     /**
@@ -80,6 +83,7 @@ class AssuntoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $assunto =  Assunto::findOrFail($id);
+        return response()->json($assunto->deleteAssunto());
     }
 }

@@ -9,6 +9,7 @@
 namespace App\Traits;
 
 use App\Tentant\TenantScope;
+use App\User;
 use function foo\func;
 
 trait TenantUsers
@@ -25,6 +26,10 @@ trait TenantUsers
             }
         });
 
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
     }
 
 }

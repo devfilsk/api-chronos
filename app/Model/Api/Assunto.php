@@ -2,13 +2,14 @@
 
 namespace App\Model\Api;
 
+use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use Illuminate\Database\Eloquent\Model;
 
 class Assunto extends Model
 {
 
-    use UuidModels;
+    use UuidModels, TenantUsers;
 
     protected $table = 'assuntos';
     protected $fillable = [
@@ -32,6 +33,19 @@ class Assunto extends Model
     public function exercicios()
     {
         return $this->hasMany(Exercicio::class, 'assunto_uuid', 'uuid');
+    }
+
+    public function createAssunto($request){
+        return $this->create($request->all());
+    }
+
+    public function updateAssunto($request){
+        $this->fill($request->all());
+        return $this->save();
+    }
+
+    public function deleteAssunto(){
+        return $this->delete();
     }
 
 }

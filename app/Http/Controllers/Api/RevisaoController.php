@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Model\Api\Revisao;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,9 +15,8 @@ class RevisaoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Revisao::all());
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +35,8 @@ class RevisaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $revisao = new Revisao();
+        return response()->json($revisao->createRevisao($request));
     }
 
     /**
@@ -46,7 +47,7 @@ class RevisaoController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Revisao::findOrFail($id));
     }
 
     /**
@@ -69,7 +70,8 @@ class RevisaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $revisao =  Revisao::findOrFail($id);
+        return response()->json($revisao->updateRevisao($request));
     }
 
     /**
@@ -80,6 +82,7 @@ class RevisaoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $revisao =  Revisao::findOrFail($id);
+        return response()->json($revisao->deleteRevisao());
     }
 }

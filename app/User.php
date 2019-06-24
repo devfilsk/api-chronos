@@ -12,7 +12,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, UuidModels, TenantUsers;
+    use Notifiable, UuidModels;
 
     //    protected $primaryKey = 'uuid';
 
@@ -69,6 +69,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function cronogramas(){
         return $this->hasMany(Cronograma::class, 'user_uuid', 'uuid');
+    }
+
+    public function createUser($request){
+        return User::create($request->all());
     }
 
 }

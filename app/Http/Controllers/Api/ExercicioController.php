@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Model\Api\Exercicio;
+use App\Model\Api\Material;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,7 @@ class ExercicioController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Exercicio::all());
     }
 
     /**
@@ -35,7 +37,8 @@ class ExercicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exercicio = new Exercicio();
+        return response()->json($exercicio->createExercicio($request));
     }
 
     /**
@@ -46,7 +49,7 @@ class ExercicioController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Exercicio::findOrFail($id));
     }
 
     /**
@@ -69,7 +72,8 @@ class ExercicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $material =  Exercicio::findOrFail($id);
+        return response()->json($material->updateExercicio($request));
     }
 
     /**
@@ -80,6 +84,7 @@ class ExercicioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material =  Exercicio::findOrFail($id);
+        return response()->json($material->deleteExercicio());
     }
 }

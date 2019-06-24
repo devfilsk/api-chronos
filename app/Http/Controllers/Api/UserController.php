@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Api\Cronograma;
-use http\Env\Response;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CronogramaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Cronograma[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return response()->json(Cronograma::all());
+        //
     }
 
     /**
@@ -37,8 +36,8 @@ class CronogramaController extends Controller
      */
     public function store(Request $request)
     {
-        $cron = new Cronograma();
-        return response()->json($cron->createCronograma($request));
+        $user = new User();
+        return response()->json($user->createUser($request));
     }
 
     /**
@@ -49,7 +48,7 @@ class CronogramaController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Cronograma::findOrFail($id));
+        //
     }
 
     /**
@@ -72,8 +71,7 @@ class CronogramaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cron = Cronograma::findOrFail($id);
-        return response()->json($cron->updateCronograma($request));
+        //
     }
 
     /**
@@ -84,7 +82,6 @@ class CronogramaController extends Controller
      */
     public function destroy($id)
     {
-        $cron = Cronograma::findOrFail($id);
-        return response()->json($cron->deleteConograma());
+        //
     }
 }

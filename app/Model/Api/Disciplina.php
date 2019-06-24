@@ -2,13 +2,14 @@
 
 namespace App\Model\Api;
 
+use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use Illuminate\Database\Eloquent\Model;
 
 class Disciplina extends Model
 {
 
-    use UuidModels;
+    use UuidModels, TenantUsers;
 
     protected $table = "disciplinas";
 
@@ -23,6 +24,19 @@ class Disciplina extends Model
 
     public function assuntos(){
         return $this->hasMany(Assunto::class, 'disciplina_uuid', 'uuid');
+    }
+
+    public function createDisciplina($request){
+        return $this->create($request->all());
+    }
+
+    public function updateDisciplina($request){
+        $this->fill($request->all());
+        return $this->save();
+    }
+
+    public function deleteDisciplina(){
+        return $this->delete();
     }
 
 }

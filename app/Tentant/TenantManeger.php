@@ -25,9 +25,9 @@ class TenantManeger
     }
 
     /**
-     * @param User $tetant
+     * @param User $tenant
      */
-    public function setTetant($tenant): void
+    public function setTenant($tenant): void
     {
         $this->tenant = $tenant;
     }

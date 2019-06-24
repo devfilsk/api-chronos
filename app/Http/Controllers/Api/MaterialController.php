@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Model\Api\Material;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Material::all());
     }
 
     /**
@@ -35,7 +36,8 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $material = new Material();
+        return response()->json($material->createMaterial($request));
     }
 
     /**
@@ -46,7 +48,7 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Material::findOrFail($id));
     }
 
     /**
@@ -69,7 +71,8 @@ class MaterialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $material =  Material::findOrFail($id);
+        return response()->json($material->updateMaterial($request));
     }
 
     /**
@@ -80,6 +83,7 @@ class MaterialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material =  Material::findOrFail($id);
+        return response()->json($material->deleteMaterial());
     }
 }
