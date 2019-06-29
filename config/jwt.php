@@ -25,7 +25,8 @@ return [
     |
     */
 
-    'secret' => env('JWT_SECRET'),
+//    'secret' => env('JWT_SECRET'),
+    'secret' => '0kVFhJY7TPGFHRfV0KSXgvFvsz0DmJPSB3U4Fwan2eeNjNOqsKTWOP7EOIxPHrHt',
 
     /*
     |--------------------------------------------------------------------------
@@ -235,7 +236,8 @@ return [
     |
     */
 
-    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
+//    'blacklist_grace_period' => env('JWT_BLACKLIST_GRACE_PERIOD', 0),
+    'blacklist_grace_period' => 30,
 
     /*
     |--------------------------------------------------------------------------

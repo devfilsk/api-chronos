@@ -29,7 +29,7 @@
 
 
 ## Generate a key for this laravel application
-#### php artisan key:generate
+    php artisan key:generate
 
 ### Execute the follow command to initialize the server:
 #### php artisan serve
@@ -49,6 +49,6 @@
     app/Model/Api             - you will find all of the models od the application;
     route/api                 - you will find all of the routes of the api;
     database/migrations       - you can see all migrations;
-    * database/postman        - you will find a file to tests what you have to import to your postman
+    * database/postman        - you will find a postman file to import to your postman.
 
 ## finish.
