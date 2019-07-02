@@ -87,4 +87,11 @@ class CronogramaController extends Controller
         $cron = Cronograma::findOrFail($id);
         return response()->json($cron->deleteConograma());
     }
+
+
+    public function getAllWithRelations(){
+        $cron = new Cronograma();
+        return response()->json($cron->cronogramasAndRelations());
+    }
+
 }

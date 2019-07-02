@@ -43,4 +43,14 @@ class Cronograma extends Model
         return $this->delete();
     }
 
+    public function cronogramasAndRelations(){
+        return Cronograma::with([
+            'disciplinas',
+            'disciplinas.assuntos',
+            'disciplinas.assuntos.materiais',
+            'disciplinas.assuntos.revisoes',
+            'disciplinas.assuntos.exercicios'
+        ])->get();
+    }
+
 }

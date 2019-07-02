@@ -21,18 +21,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('refresh', 'Api\AuthController@refresh');
 Route::name('api.login')->post('login', 'Api\AuthController@login');
 
+Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit']]);
+
+Route::post('user', 'Api\UserController@store');
+
 Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant']], function (){
     Route::get('users', function (){
         return \App\User::all();
     });
 
-    Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit']]);
     Route::resource('cronogramas', 'Api\CronogramaController', ['except' => ['create', 'edit']]);
     Route::resource('disciplinas', 'Api\DisciplinaController', ['except' => ['create', 'edit']]);
     Route::resource('assuntos', 'Api\AssuntoController', ['except' => ['create', 'edit']]);
     Route::resource('revisoes', 'Api\RevisaoController', ['except' => ['create', 'edit']]);
     Route::resource('materiais', 'Api\MaterialController', ['except' => ['create', 'edit']]);
     Route::resource('exercicios', 'Api\ExercicioController', ['except' => ['create', 'edit']]);
+
+    Route::get('cronograma/completos', 'Api\CronogramaController@getAllWithRelations');
 
     Route::post('logout', 'Api\AuthController@logout');
 
