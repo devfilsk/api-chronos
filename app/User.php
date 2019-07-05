@@ -72,7 +72,9 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function createUser($request){
-        return User::create($request->all());
+        $dados = $request->all();
+        $dados['password'] = bcrypt($dados['password']);
+        return User::create($dados);
     }
 
 }

@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant']], function (
     Route::resource('exercicios', 'Api\ExercicioController', ['except' => ['create', 'edit']]);
 
     Route::get('cronograma/completos', 'Api\CronogramaController@getAllWithRelations');
+    Route::get('cronograma-completo/{uuid}', 'Api\CronogramaController@showFullCronograma');
 
     Route::post('logout', 'Api\AuthController@logout');
 

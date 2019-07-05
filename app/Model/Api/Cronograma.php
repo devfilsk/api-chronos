@@ -53,4 +53,14 @@ class Cronograma extends Model
         ])->get();
     }
 
+    public function cronogramaAndRelations($id){
+        return Cronograma::with([
+            'disciplinas',
+            'disciplinas.assuntos',
+            'disciplinas.assuntos.materiais',
+            'disciplinas.assuntos.revisoes',
+            'disciplinas.assuntos.exercicios'
+        ])->where('uuid', $id)->get();
+    }
+
 }

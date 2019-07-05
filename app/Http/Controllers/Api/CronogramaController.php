@@ -94,4 +94,9 @@ class CronogramaController extends Controller
         return response()->json($cron->cronogramasAndRelations());
     }
 
+    public function showFullCronograma($id){
+        $cron = new Cronograma();
+        return response()->json($cron->cronogramaAndRelations($id));
+    }
+
 }
