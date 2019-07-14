@@ -21,7 +21,10 @@ class AuthController extends Controller
     }
 
     private function responseToken($token){
-        return $token ? ['token' => $token] :
+        return $token ? [
+            'token' => $token,
+            'user' => \Auth::user()
+            ] :
             response()->json([
                 'error' => \Lang::get('auth.failed')
             ], 400);
@@ -36,6 +39,6 @@ class AuthController extends Controller
     public function refresh(){
         $token = \Auth::refresh();
         // 204 significa "sem conteúdo | No-content"
-        return ['token' => $token];
+        return $this->responseToken($token);
     }
 }

@@ -25,7 +25,7 @@ Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit']]);
 
 Route::post('user', 'Api\UserController@store');
 
-Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant']], function (){
+Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant', 'bindings']], function (){
     Route::get('users', function (){
         return \App\User::all();
     });

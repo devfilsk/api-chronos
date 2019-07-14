@@ -5,11 +5,12 @@ namespace App\Model\Api;
 use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Assunto extends Model
 {
 
-    use UuidModels, TenantUsers;
+    use UuidModels, TenantUsers, SoftDeletes;
 
     protected $table = 'assuntos';
     protected $fillable = [

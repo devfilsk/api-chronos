@@ -5,6 +5,7 @@ namespace App;
 use App\Model\Api\Cronograma;
 use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, UuidModels;
+    use Notifiable, UuidModels, SoftDeletes;
 
     //    protected $primaryKey = 'uuid';
 

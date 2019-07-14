@@ -7,10 +7,11 @@ use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cronograma extends Model
 {
-    use UuidModels, TenantUsers;
+    use UuidModels, TenantUsers, SoftDeletes;
 
     protected $table = 'cronogramas';
     protected $fillable = [
