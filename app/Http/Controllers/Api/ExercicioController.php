@@ -85,6 +85,11 @@ class ExercicioController extends Controller
     public function destroy($id)
     {
         $material =  Exercicio::findOrFail($id);
-        return response()->json($material->deleteExercicio());
+        $return = [
+            'success' => $material->deleteExercicio(),
+            'data'    => $material,
+            'message' => "Exercicio excluído com sucesso"
+        ];
+        return response()->json($return);
     }
 }

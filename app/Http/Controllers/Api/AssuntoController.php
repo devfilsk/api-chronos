@@ -84,6 +84,11 @@ class AssuntoController extends Controller
     public function destroy($id)
     {
         $assunto =  Assunto::findOrFail($id);
-        return response()->json($assunto->deleteAssunto());
+        $return = [
+            'success' => $assunto->deleteAssunto(),
+            'data'    => $assunto,
+            'message' => "Assunto excluído com sucesso"
+        ];
+        return response()->json($return);
     }
 }

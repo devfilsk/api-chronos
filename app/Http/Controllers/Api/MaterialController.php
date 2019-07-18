@@ -84,6 +84,11 @@ class MaterialController extends Controller
     public function destroy($id)
     {
         $material =  Material::findOrFail($id);
-        return response()->json($material->deleteMaterial());
+        $return = [
+            'success' => $material->deleteMaterial(),
+            'data'    => $material,
+            'message' => "Material excluído com sucesso"
+        ];
+        return response()->json($return);
     }
 }

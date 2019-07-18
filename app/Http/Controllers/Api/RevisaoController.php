@@ -83,6 +83,11 @@ class RevisaoController extends Controller
     public function destroy($id)
     {
         $revisao =  Revisao::findOrFail($id);
-        return response()->json($revisao->deleteRevisao());
+        $return = [
+            'success' => $revisao->deleteRevisao(),
+            'data'    => $revisao,
+            'message' => "Revisão excluída com sucesso"
+        ];
+        return response()->json($return);
     }
 }

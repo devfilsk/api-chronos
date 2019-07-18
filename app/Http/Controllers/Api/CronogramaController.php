@@ -85,7 +85,13 @@ class CronogramaController extends Controller
     public function destroy($id)
     {
         $cron = Cronograma::findOrFail($id);
-        return response()->json($cron->deleteCronograma());
+        $return = [
+            'success' => $cron->deleteCronograma(),
+            'data'    => $cron,
+            'message' => "Cronograma excluído com sucesso"
+        ];
+
+        return response()->json($return);
     }
 
 

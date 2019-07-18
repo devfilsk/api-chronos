@@ -84,6 +84,12 @@ class DisciplinaController extends Controller
     public function destroy($id)
     {
         $disciplina = Disciplina::findOrFail($id);
-        return response()->json($disciplina->deleteDisciplina());
+        $return = [
+            'success' => $disciplina->deleteDisciplina(),
+            'data'    => $disciplina,
+            'message' => "Disciplina excluída com sucesso"
+        ];
+
+        return response()->json($return);
     }
 }
