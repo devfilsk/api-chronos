@@ -15,7 +15,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return response()->json(Material::all());
+        return response()->json(['materiais' => Material::all()]);
     }
 
     /**
@@ -37,7 +37,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         $material = new Material();
-        return response()->json($material->createMaterial($request));
+        return response()->json(['material' => $material->createMaterial($request)]);
     }
 
     /**
@@ -48,7 +48,7 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Material::findOrFail($id));
+        return response()->json(['material' => Material::findOrFail($id)]);
     }
 
     /**
@@ -72,7 +72,7 @@ class MaterialController extends Controller
     public function update(Request $request, $id)
     {
         $material =  Material::findOrFail($id);
-        return response()->json($material->updateMaterial($request));
+        return response()->json(['material' => $material->updateMaterial($request)]);
     }
 
     /**
@@ -86,7 +86,7 @@ class MaterialController extends Controller
         $material =  Material::findOrFail($id);
         $return = [
             'success' => $material->deleteMaterial(),
-            'data'    => $material,
+            'material'    => $material,
             'message' => "Material excluído com sucesso"
         ];
         return response()->json($return);

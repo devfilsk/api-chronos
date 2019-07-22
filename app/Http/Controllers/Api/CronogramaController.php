@@ -16,7 +16,8 @@ class CronogramaController extends Controller
      */
     public function index()
     {
-        return response()->json(Cronograma::all());
+        $retorno['cronogramas'] = Cronograma::all();
+        return response()->json($retorno);
     }
 
     /**
@@ -38,7 +39,8 @@ class CronogramaController extends Controller
     public function store(Request $request)
     {
         $cron = new Cronograma();
-        return response()->json($cron->createCronograma($request));
+        $return['cronograma'] = $cron->createCronograma($request);
+        return response()->json($return);
     }
 
     /**
@@ -49,7 +51,8 @@ class CronogramaController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Cronograma::findOrFail($id));
+        $return['cronograma'] = Cronograma::findOrFail($id);
+        return response()->json($return);
     }
 
     /**
@@ -73,7 +76,8 @@ class CronogramaController extends Controller
     public function update(Request $request, $id)
     {
         $cron = Cronograma::findOrFail($id);
-        return response()->json($cron->updateCronograma($request));
+        $return['cronograma'] = $cron->updateCronograma($request);
+        return response()->json($return);
     }
 
     /**
@@ -87,7 +91,7 @@ class CronogramaController extends Controller
         $cron = Cronograma::findOrFail($id);
         $return = [
             'success' => $cron->deleteCronograma(),
-            'data'    => $cron,
+            'cronograma'    => $cron,
             'message' => "Cronograma excluído com sucesso"
         ];
 
@@ -97,12 +101,14 @@ class CronogramaController extends Controller
 
     public function getAllWithRelations(){
         $cron = new Cronograma();
-        return response()->json($cron->cronogramasAndRelations());
+        $retorno['cronogramas'] = $cron->cronogramasAndRelations();
+        return response()->json($retorno);
     }
 
     public function showFullCronograma($id){
         $cron = new Cronograma();
-        return response()->json($cron->cronogramaAndRelations($id));
+        $retorno['cronograma'] = $cron->cronogramaAndRelations($id);
+        return response()->json($retorno);
     }
 
 }

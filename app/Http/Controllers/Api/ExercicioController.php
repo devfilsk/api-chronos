@@ -16,7 +16,7 @@ class ExercicioController extends Controller
      */
     public function index()
     {
-        return response()->json(Exercicio::all());
+        return response()->json(['exercicios' => Exercicio::all()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class ExercicioController extends Controller
     public function store(Request $request)
     {
         $exercicio = new Exercicio();
-        return response()->json($exercicio->createExercicio($request));
+        return response()->json(['exercicio' => $exercicio->createExercicio($request)]);
     }
 
     /**
@@ -49,7 +49,7 @@ class ExercicioController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Exercicio::findOrFail($id));
+        return response()->json(['exercicio' => Exercicio::findOrFail($id)]);
     }
 
     /**
@@ -73,7 +73,7 @@ class ExercicioController extends Controller
     public function update(Request $request, $id)
     {
         $material =  Exercicio::findOrFail($id);
-        return response()->json($material->updateExercicio($request));
+        return response()->json(['exercicio' => $material->updateExercicio($request)]);
     }
 
     /**
@@ -87,7 +87,7 @@ class ExercicioController extends Controller
         $material =  Exercicio::findOrFail($id);
         $return = [
             'success' => $material->deleteExercicio(),
-            'data'    => $material,
+            'exercicio'    => $material,
             'message' => "Exercicio excluído com sucesso"
         ];
         return response()->json($return);

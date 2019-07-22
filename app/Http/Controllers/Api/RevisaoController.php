@@ -15,7 +15,7 @@ class RevisaoController extends Controller
      */
     public function index()
     {
-        return response()->json(Revisao::all());
+        return response()->json(['revisoes' => Revisao::all()]);
     }
     /**
      * Show the form for creating a new resource.
@@ -36,7 +36,7 @@ class RevisaoController extends Controller
     public function store(Request $request)
     {
         $revisao = new Revisao();
-        return response()->json($revisao->createRevisao($request));
+        return response()->json(['revisao' => $revisao->createRevisao($request)]);
     }
 
     /**
@@ -47,7 +47,7 @@ class RevisaoController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Revisao::findOrFail($id));
+        return response()->json(['revisao' => Revisao::findOrFail($id)]);
     }
 
     /**
@@ -71,7 +71,7 @@ class RevisaoController extends Controller
     public function update(Request $request, $id)
     {
         $revisao =  Revisao::findOrFail($id);
-        return response()->json($revisao->updateRevisao($request));
+        return response()->json(['revisao' => $revisao->updateRevisao($request)]);
     }
 
     /**
@@ -85,7 +85,7 @@ class RevisaoController extends Controller
         $revisao =  Revisao::findOrFail($id);
         $return = [
             'success' => $revisao->deleteRevisao(),
-            'data'    => $revisao,
+            'revisao'    => $revisao,
             'message' => "Revisão excluída com sucesso"
         ];
         return response()->json($return);

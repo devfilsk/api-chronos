@@ -15,7 +15,7 @@ class DisciplinaController extends Controller
      */
     public function index()
     {
-        return response()->json(Disciplina::all());
+        return response()->json(['disciplinas' => Disciplina::all()]);
     }
 
     /**
@@ -37,7 +37,7 @@ class DisciplinaController extends Controller
     public function store(Request $request)
     {
         $disciplina = new Disciplina();
-        return response()->json($disciplina->createDisciplina($request));
+        return response()->json(['disciplina' => $disciplina->createDisciplina($request)]);
     }
 
     /**
@@ -48,7 +48,7 @@ class DisciplinaController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Disciplina::findOrFail($id));
+        return response()->json(['disciplina' => Disciplina::findOrFail($id)]);
     }
 
     /**
@@ -72,7 +72,7 @@ class DisciplinaController extends Controller
     public function update(Request $request, $id)
     {
         $disciplina = Disciplina::findOrFail($id);
-        return response()->json($disciplina->updateDisciplina($request));
+        return response()->json(['disciplina' => $disciplina->updateDisciplina($request)]);
     }
 
     /**
@@ -86,7 +86,7 @@ class DisciplinaController extends Controller
         $disciplina = Disciplina::findOrFail($id);
         $return = [
             'success' => $disciplina->deleteDisciplina(),
-            'data'    => $disciplina,
+            'disciplina'    => $disciplina,
             'message' => "Disciplina excluída com sucesso"
         ];
 
