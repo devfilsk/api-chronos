@@ -26,18 +26,4 @@ class Disciplina extends Model
     public function assuntos(){
         return $this->hasMany(Assunto::class, 'disciplina_uuid', 'uuid');
     }
-
-    public function createDisciplina($request){
-        return $this->create($request->all());
-    }
-
-    public function updateDisciplina($request){
-        $this->fill($request->all());
-        return $this->save();
-    }
-
-    public function deleteDisciplina(){
-        return $this->delete();
-    }
-
 }

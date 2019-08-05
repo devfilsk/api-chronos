@@ -21,16 +21,4 @@ class Material extends Model
         return $this->belongsTo(Assunto::class, 'assunto_uuid', 'uuid');
     }
 
-    public function createMaterial($request){
-        return $this->create($request->all());
-    }
-
-    public function updateMaterial($request){
-        $this->fill($request->all());
-        return $this->save();
-    }
-
-    public function deleteMaterial(){
-        return $this->delete();
-    }
 }

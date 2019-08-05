@@ -28,22 +28,6 @@ class Cronograma extends Model
         return $this->hasMany(Disciplina::class, 'cronograma_uuid', 'uuid');
     }
 
-    public function createCronograma($request)
-    {
-        return $this->create($request->all());
-    }
-
-    public function updateCronograma($request)
-    {
-        $this->fill($request->all());
-        return $this->save();
-
-    }
-
-    public function deleteCronograma(){
-        return $this->delete();
-    }
-
     public function cronogramasAndRelations(){
         return Cronograma::with([
             'disciplinas',

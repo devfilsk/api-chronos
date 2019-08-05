@@ -3,92 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\Api\Assunto;
+use App\Repository\AssuntoRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AssuntoController extends Controller
+class AssuntoController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return response()->json(['assuntos' => Assunto::all()]);
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * AssuntoController constructor.
+     * @param AssuntoRepository $repository
      */
-    public function create()
+    public function __construct(AssuntoRepository $repository)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $assunto = new Assunto();
-        return response()->json(['assunto' => $assunto->createAssunto($request)]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return response()->json(['assunto' => Assunto::findOrFail($id)]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $assunto =  Assunto::findOrFail($id);
-        return response()->json(['assunto' => $assunto->updateAssunto($request)]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $assunto =  Assunto::findOrFail($id);
-        $return = [
-            'success' => $assunto->deleteAssunto(),
-            'assunto'    => $assunto,
-            'message' => "Assunto excluído com sucesso"
-        ];
-        return response()->json($return);
+        $this->repository = $repository;
     }
 }

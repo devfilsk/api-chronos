@@ -20,18 +20,4 @@ class Revisao extends Model
     {
         return $this->belongsTo(Assunto::class, 'assunto_uuid', 'uuid');
     }
-
-    public function createRevisao($request){
-        return $this->create($request->all());
-    }
-
-    public function updateRevisao($request){
-        $this->fill($request->all());
-        return $this->save();
-    }
-
-    public function deleteRevisao(){
-        return $this->delete();
-    }
-
 }

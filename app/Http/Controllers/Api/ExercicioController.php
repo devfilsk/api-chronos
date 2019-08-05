@@ -2,94 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Api\Exercicio;
-use App\Model\Api\Material;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ExercicioController extends Controller
+use App\Repository\ExercicioRepository;
+
+class ExercicioController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct(ExercicioRepository $repository)
     {
-        return response()->json(['exercicios' => Exercicio::all()]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $exercicio = new Exercicio();
-        return response()->json(['exercicio' => $exercicio->createExercicio($request)]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return response()->json(['exercicio' => Exercicio::findOrFail($id)]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $material =  Exercicio::findOrFail($id);
-        return response()->json(['exercicio' => $material->updateExercicio($request)]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $material =  Exercicio::findOrFail($id);
-        $return = [
-            'success' => $material->deleteExercicio(),
-            'exercicio'    => $material,
-            'message' => "Exercicio excluído com sucesso"
-        ];
-        return response()->json($return);
+        $this->repository = $repository;
     }
 }

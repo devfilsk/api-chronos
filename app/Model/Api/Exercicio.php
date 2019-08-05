@@ -20,18 +20,4 @@ class Exercicio extends Model
     {
         return $this->belongsTo(Assunto::class, 'assunto_uuid', 'uuid');
     }
-
-    public function createExercicio($request){
-        return $this->create($request->all());
-    }
-
-    public function updateExercicio($request){
-        $this->fill($request->all());
-        return $this->save();
-    }
-
-    public function deleteExercicio(){
-        return $this->delete();
-    }
-
 }

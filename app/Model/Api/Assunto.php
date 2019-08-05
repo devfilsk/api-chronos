@@ -35,18 +35,4 @@ class Assunto extends Model
     {
         return $this->hasMany(Exercicio::class, 'assunto_uuid', 'uuid');
     }
-
-    public function createAssunto($request){
-        return $this->create($request->all());
-    }
-
-    public function updateAssunto($request){
-        $this->fill($request->all());
-        return $this->save();
-    }
-
-    public function deleteAssunto(){
-        return $this->delete();
-    }
-
 }
