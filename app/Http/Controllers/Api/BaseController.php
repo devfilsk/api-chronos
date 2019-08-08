@@ -102,11 +102,12 @@ abstract class BaseController extends Controller
 
     public function responseSuccessJson($action, $data)
     {
+        $name = class_basename($this->repository->model());
         $return = [
-            'success' => $action,
-            'cronograma'    => $data,
-            'message' => "Ação realizada com sucesso"
+            'success'       => $action,
+            'message'       => "Ação realizada com sucesso"
         ];
+        $return[strtolower($name)] = $data;
         return Response()->json($return);
     }
 
