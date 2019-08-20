@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\Api\Cronograma;
+use App\Notifications\ResetPasswordNotification;
 use App\Traits\TenantUsers;
 use App\Traits\UuidModels;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -76,6 +77,14 @@ class User extends Authenticatable implements JWTSubject
         $dados = $request->all();
         $dados['password'] = bcrypt($dados['password']);
         return User::create($dados);
+    }
+
+    /**
+     * Override the mail body for reset password notification mail.
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
 }

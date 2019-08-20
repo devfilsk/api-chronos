@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('refresh', 'Api\AuthController@refresh');
 Route::name('api.login')->post('login', 'Api\AuthController@login');
 
+// Send reset password mail
+//Route::post('reset-password', 'Api\AuthController@sendPasswordResetLink');
+Route::post('reset-password', 'Api\ResetPasswordController@sendEmail');
+
+// handle reset password form process
+Route::post('reset/password', 'Api\AuthController@callResetPassword');
+
 Route::post('user', 'Api\UserController@store');
 
 Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant', 'bindings']], function (){
