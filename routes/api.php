@@ -23,7 +23,8 @@ Route::name('api.login')->post('login', 'Api\AuthController@login');
 
 // Send reset password mail
 //Route::post('reset-password', 'Api\AuthController@sendPasswordResetLink');
-Route::post('reset-password', 'Api\ResetPasswordController@sendEmail');
+Route::post('email-reset-password', 'Api\ResetPasswordController@sendEmail');
+Route::post('reset-password', 'Api\Auth\ChangePasswordController@process');
 
 // handle reset password form process
 Route::post('reset/password', 'Api\AuthController@callResetPassword');
@@ -32,7 +33,7 @@ Route::post('user', 'Api\UserController@store');
 
 Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant', 'bindings']], function (){
 
-    Route::resource('user', 'Api\UserController', ['except' => ['create', 'edit', 'index']]);
+    Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit', 'index']]);
     Route::resource('cronogramas', 'Api\CronogramaController', ['except' => ['create', 'edit']]);
     Route::resource('disciplinas', 'Api\DisciplinaController', ['except' => ['create', 'edit']]);
     Route::resource('assuntos', 'Api\AssuntoController', ['except' => ['create', 'edit']]);

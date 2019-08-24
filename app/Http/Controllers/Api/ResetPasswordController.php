@@ -20,7 +20,7 @@ class ResetPasswordController extends Controller
         if(!$this->validateEmail($request->email)){
             return $this->failedResponse();
         }
-
+        $this->email = "devfilsk@gmail.com";
         $this->send($request->email);
 
         return $this->successResponse();
@@ -37,14 +37,13 @@ class ResetPasswordController extends Controller
 
     public function createToken()
     {
-        $token = Str::random(60);
         $oldToken = DB::table('password_resets')->where('email', $this->email)->first();
         if($oldToken){
-//            dd($oldToken);
-            return $oldToken;
+            return $oldToken->token;
         }
-        $this->saveToken($token);
-        return $token;
+        $token = Str::random(60);
+        $response = $this->saveToken($token);
+        return $response;
     }
 
     public function saveToken($token)
@@ -54,6 +53,7 @@ class ResetPasswordController extends Controller
             'token' => $token,
             'created_at' => Carbon::now()
         ]);
+        return $token;
     }
 
     public function validateEmail($email){
@@ -68,7 +68,7 @@ class ResetPasswordController extends Controller
 
     public function successResponse(){
         return response()->json([
-            "error" => 'Email enviado com sucesso. Por favor, verifique sua caixa de entrada.'
+            "success" => 'Email enviado com sucesso. Por favor, verifique sua caixa de entrada.'
         ], Response::HTTP_OK);
     }
 }
