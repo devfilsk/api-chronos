@@ -16,11 +16,13 @@ use Symfony\Component\HttpFoundation\Response;
 class ResetPasswordController extends Controller
 {
     public $email;
+    public $origin;
     public function sendEmail(Request $request) {
         if(!$this->validateEmail($request->email)){
             return $this->failedResponse();
         }
-        $this->email = "devfilsk@gmail.com";
+        $this->origin = $request->header('origin');
+//        return response()->json($this->origin);
         $this->send($request->email);
 
         return $this->successResponse();
@@ -32,7 +34,7 @@ class ResetPasswordController extends Controller
     public function send($email){
         $this->email = $email;
         $token = $this->createToken();
-        Mail::to($email)->send(new ResetPasswordMail($token));
+        Mail::to($email)->send(new ResetPasswordMail($token, $this->origin));
     }
 
     public function createToken()

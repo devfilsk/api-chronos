@@ -18,8 +18,9 @@ class ChangePasswordController extends Controller
 {
     use ResetsPasswords;
 
-    public function process(ChangePasswordRequest $request)
+    public function process(Request $request)
     {
+//        return response()->json($request->header('origin'));
 //        return $this->reset($request);
         return $this->getPasswordResetTableRow($request)->count() > 0 ? $this->changePassword($request) : $this->tokenNotFoundResponse();
     }

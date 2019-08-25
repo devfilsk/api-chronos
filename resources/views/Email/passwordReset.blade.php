@@ -1,12 +1,13 @@
 @component('mail::message')
-# Introduction
+# Recuperação de senha
 
-The body of your message.
+Clique no botão abaixo para renovar a sua senha
 
-@component('mail::button', ['url' => 'http://admin.vizzarconsultoria.com?token='.$token])
-Button Text
+
+@component('mail::button', ['url' => $origin.'/recuperar-senha?token='.$token])
+Renovar Senha
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Obrigado,<br>
+    Chronos
 @endcomponent
