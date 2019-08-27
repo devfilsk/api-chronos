@@ -13,5 +13,10 @@ use App\User;
 
 class UserRepository extends BaseRepository
 {
-    public $model = User::class;
+//    public $model = User::class;
+
+    public function model()
+    {
+        return $this->model = User::class;
+    }
 }

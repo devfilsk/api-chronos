@@ -13,5 +13,10 @@ use App\Model\Api\Disciplina;
 
 class DisciplinaRepository extends BaseRepository
 {
-    public $model = Disciplina::class;
+//    public $model = Disciplina::class;
+
+    public function model()
+    {
+        return $this->model = Disciplina::class;
+    }
 }

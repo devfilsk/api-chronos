@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant', 'bindings']]
     Route::resource('revisoes', 'Api\RevisaoController', ['except' => ['create', 'edit']]);
     Route::resource('materiais', 'Api\MaterialController', ['except' => ['create', 'edit']]);
     Route::resource('exercicios', 'Api\ExercicioController', ['except' => ['create', 'edit']]);
+    Route::resource('artefatos', 'Api\ArtefatoController', ['except' => ['create', 'edit']]);
 
     Route::get('cronograma/completos', 'Api\CronogramaController@getAllWithRelations');
     Route::get('cronograma-completo/{uuid}', 'Api\CronogramaController@showFullCronograma');

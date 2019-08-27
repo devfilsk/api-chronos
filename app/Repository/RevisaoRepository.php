@@ -13,5 +13,10 @@ use App\Model\Api\Revisao;
 
 class RevisaoRepository extends BaseRepository
 {
-    public $model = Revisao::class;
+//    public $model = Revisao::class;
+
+    public function model()
+    {
+        return $this->model = Revisao::class;
+    }
 }

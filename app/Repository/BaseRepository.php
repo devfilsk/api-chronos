@@ -11,10 +11,12 @@ namespace App\Repository;
 
 abstract class BaseRepository
 {
-    protected $model;
-    protected $modelName;
+    public $model;
+    public $modelName;
 
-    public function model() {
-        return new $this->model;
-    }
+//    public function model() {
+//        return new $this->model;
+//    }
+    public abstract function model();
+
 }

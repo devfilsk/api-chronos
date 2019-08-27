@@ -13,6 +13,10 @@ use App\Model\Api\Cronograma;
 
 class CronogramaRepository extends BaseRepository
 {
-    public $model = Cronograma::class;
+//    public $model = Cronograma::class;
 
+    public function model()
+    {
+        return $this->model = Cronograma::class;
+    }
 }
