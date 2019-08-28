@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Repository\ArtefatoRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ArtefatoController extends BaseController
 {
@@ -14,14 +13,18 @@ class ArtefatoController extends BaseController
      */
     public function __construct(Request $request)
     {
-        $this->repository = new ArtefatoRepository(array_keys($request->all()));
-        dd(class_basename($this->repository->model));
+        $type = array_keys($request->all());
+        $this->repository = new ArtefatoRepository($type[0]);
     }
 
-//    public function store(Request $request)
-//    {
-//        $this->repository = new ArtefatoRepository(array_keys($request->all()));
-//        return response()->json(array_keys($request->all()));
-//    }
+    public function store(Request $request){
+        return $this->responseJson($this->repository->store($request));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->repository->model()->findOrFail($id);
+        return $this->responseSuccessJson($this->repository->update($model, $request), $model->fresh());
+    }
 
 }

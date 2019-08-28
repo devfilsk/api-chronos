@@ -13,10 +13,10 @@ use App\Model\Api\Exercicio;
 
 class ExercicioRepository extends BaseRepository
 {
-//    public $model = Exercicio::class;
+    public $model = Exercicio::class;
 
-    public function model()
-    {
-        return $this->model = Exercicio::class;
-    }
+//    public function model()
+//    {
+//        return $this->model = Exercicio::class;
+//    }
 }

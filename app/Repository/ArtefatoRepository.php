@@ -12,6 +12,7 @@ namespace App\Repository;
 use App\Model\Api\Exercicio;
 use App\Model\Api\Material;
 use App\Model\Api\Revisao;
+use Illuminate\Http\Request;
 
 class ArtefatoRepository extends BaseRepository
 {
@@ -24,17 +25,27 @@ class ArtefatoRepository extends BaseRepository
     public function __construct($type)
     {
         $this->type = $type;
-    }
-
-    public function model()
-    {
         switch ($this->type){
             case 0: // Material
-                return $this->model = Material::class;
+                $this->model = Material::class;
+                break;
             case 1: // Revisao
-                return $this->model = Revisao::class;
+                $this->model = Revisao::class;
+                break;
             case 2: // Exercicio
-                return $this->model = Exercicio::class;
+                $this->model = Exercicio::class;
+                break;
         }
+    }
+
+    public function store(Request $request)
+    {
+        return $this->model()->create($request[0]);
+    }
+
+    public function update($model, $request)
+    {
+        $model->fill($request[0]);
+        return $model->save();
     }
 }

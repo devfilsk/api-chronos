@@ -13,10 +13,10 @@ use App\Model\Api\Assunto;
 
 class AssuntoRepository extends BaseRepository
 {
-//    public $model = Assunto::class;
+    public $model = Assunto::class;
 
-    public function model()
-    {
-        return $this->model = Assunto::class;
-    }
+//    public function model()
+//    {
+//        return $this->model = Assunto::class;
+//    }
 }

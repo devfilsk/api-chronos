@@ -13,10 +13,6 @@ use App\Model\Api\Material;
 
 class MaterialRepository extends BaseRepository
 {
-//    public $model = Material::class;
+    public $model = Material::class;
 
-    public function model()
-    {
-        return $this->model = Material::class;
-    }
 }

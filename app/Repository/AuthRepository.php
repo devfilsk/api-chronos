@@ -16,11 +16,11 @@ class AuthRepository extends BaseRepository
 {
     use SendsPasswordResetEmails, ResetsPasswords;
 
-//    public $model = User::class;
+    public $model = User::class;
 
-    public function model()
-    {
-        return $this->model = User::class;
-    }
+//    public function model()
+//    {
+//        return $this->model = User::class;
+//    }
 
 }

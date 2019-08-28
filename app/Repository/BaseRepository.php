@@ -14,9 +14,9 @@ abstract class BaseRepository
     public $model;
     public $modelName;
 
-//    public function model() {
-//        return new $this->model;
-//    }
-    public abstract function model();
+    public function model() {
+        return new $this->model;
+    }
+//    public abstract function model();
 
 }
