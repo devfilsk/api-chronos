@@ -40,12 +40,12 @@ class ArtefatoRepository extends BaseRepository
 
     public function store(Request $request)
     {
-        return $this->model()->create($request[0]);
+        return $this->model()->create($request[$this->type]);
     }
 
     public function update($model, $request)
     {
-        $model->fill($request[0]);
+        $model->fill($request[$this->type]);
         return $model->save();
     }
 }

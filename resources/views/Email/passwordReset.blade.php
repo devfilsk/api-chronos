@@ -4,7 +4,7 @@
 Clique no botão abaixo para renovar a sua senha
 
 
-@component('mail::button', ['url' => $origin.'/recuperar-senha?token='.$token])
+@component('mail::button', ['url' => $origin.'/confirmar-senha?token='.$token])
 Renovar Senha
 @endcomponent
 
