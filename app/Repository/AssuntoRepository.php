@@ -19,4 +19,16 @@ class AssuntoRepository extends BaseRepository
 //    {
 //        return $this->model = Assunto::class;
 //    }
+
+    public function show($id)
+    {
+        return $this->model()
+            ->where('uuid', $id)
+            ->with([
+                'revisoes',
+                'materiais',
+                'exercicios'
+            ])->get();
+    }
+
 }

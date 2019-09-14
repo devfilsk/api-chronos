@@ -37,9 +37,9 @@ Route::group(['middleware' => ['auth:api', 'jwt.refresh', 'tenant', 'bindings']]
     Route::resource('cronogramas', 'Api\CronogramaController', ['except' => ['create', 'edit']]);
     Route::resource('disciplinas', 'Api\DisciplinaController', ['except' => ['create', 'edit']]);
     Route::resource('assuntos', 'Api\AssuntoController', ['except' => ['create', 'edit']]);
-    Route::resource('revisoes', 'Api\RevisaoController', ['except' => ['create', 'edit']]);
-    Route::resource('materiais', 'Api\MaterialController', ['except' => ['create', 'edit']]);
-    Route::resource('exercicios', 'Api\ExercicioController', ['except' => ['create', 'edit']]);
+    Route::resource('artefatos/revisao', 'Api\RevisaoController', ['except' => ['create', 'edit']]);
+    Route::resource('artefatos/material', 'Api\MaterialController', ['except' => ['create', 'edit']]);
+    Route::resource('artefatos/exercicio', 'Api\ExercicioController', ['except' => ['create', 'edit']]);
     Route::resource('artefatos', 'Api\ArtefatoController', ['except' => ['create', 'edit']]);
 
     Route::get('cronograma/completos', 'Api\CronogramaController@getAllWithRelations');
