@@ -42,7 +42,11 @@ abstract class BaseController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->responseJson($this->repository->model()->create($request->all()));
+        try{
+            return $this->responseJson($this->repository->model()->create($request->all()));
+        }catch (\Exception $e){
+            return response()->json(["msg" => "Ops. Ocorreu um erro interno."], 500);
+        }
     }
 
     /**

@@ -73,12 +73,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Cronograma::class, 'user_uuid', 'uuid');
     }
 
-    public function createUser($request){
-        $dados = $request->all();
-        $dados['password'] = bcrypt($dados['password']);
-        return User::create($dados);
-    }
-
     /**
      * Override the mail body for reset password notification mail.
      */
