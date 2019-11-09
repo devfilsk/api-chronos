@@ -20,18 +20,12 @@ abstract class BaseController extends Controller
 
     public function index()
     {
+        try{
 //        $retorno['cronogramas'] = $this->repository->model()->all();
-        return $this->responseJson($this->repository->model()->all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            return $this->responseJson($this->repository->model()->all());
+        }catch (\Exception $e){
+            return response()->json(["message" => "Ops. Ocorreu um erro interno."], 500);
+        }
     }
 
     /**
@@ -45,7 +39,7 @@ abstract class BaseController extends Controller
         try{
             return $this->responseJson($this->repository->model()->create($request->all()));
         }catch (\Exception $e){
-            return response()->json(["msg" => "Ops. Ocorreu um erro interno."], 500);
+            return response()->json(["message" => "Ops. Ocorreu um erro interno."], 500);
         }
     }
 
@@ -57,18 +51,11 @@ abstract class BaseController extends Controller
      */
     public function show($id)
     {
-        return $this->responseJson($this->repository->model()->findOrFail($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        try {
+            return $this->responseJson($this->repository->model()->findOrFail($id));
+        }catch (\Exception $e){
+            return response()->json(["message" => "Ops. Ocorreu um erro interno."], 500);
+        }
     }
 
     /**
@@ -80,9 +67,13 @@ abstract class BaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $model = $this->repository->model()->findOrFail($id);
-        $model->fill($request->all());
-        return $this->responseSuccessJson($model->save(), $model->fresh());
+        try{
+            $model = $this->repository->model()->findOrFail($id);
+            $model->fill($request->all());
+            return $this->responseSuccessJson($model->save(), $model->fresh());
+        }catch (\Exception $e){
+            return response()->json(["message" => "Ops. Ocorreu um erro interno."], 500);
+        }
     }
 
     /**
@@ -93,8 +84,12 @@ abstract class BaseController extends Controller
      */
     public function destroy($id)
     {
-        $model = $this->repository->model()->findOrFail($id);
-        return$this->responseSuccessJson($model->delete(), $model);
+        try{
+            $model = $this->repository->model()->findOrFail($id);
+            return $this->responseSuccessJson($model->delete(), $model);
+        }catch (\Exception $e){
+            return response()->json(["message" => "Ops. Ocorreu um erro interno."], 500);
+        }
     }
 
     public function responseJson($result)
